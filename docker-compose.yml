@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: jobshield-postgres
+    environment:
+      POSTGRES_DB: jobshield
+      POSTGRES_USER: jobshield
+      POSTGRES_PASSWORD: jobshield
+    ports:
+      - "5432:5432"
+    volumes:
+      - jobshield_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jobshield -d jobshield"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    container_name: jobshield-backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: jobshield-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  jobshield_pgdata:

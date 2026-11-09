@@ -1,0 +1,6 @@
+Company: Example Technologies
+Role: AI Intern
+Recruiter: Rahul
+Email: recruiter@gmail.com
+Website: https://example.com
+Apply immediately.

@@ -1,0 +1,6 @@
+Company: Example Technologies
+Role: Python Backend Intern
+Location: Noida
+Stipend: ₹20,000/month
+Apply through the official careers page.
+No registration fee is required.
